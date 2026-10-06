@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Ajay — Quantitative Finance & Independent Trading</title>
+
+  <meta
+    name="description"
+    content="Ajay — Engineering student, quantitative finance researcher, and independent trader."
+  />
+
+  <style>
+    :root {
+      --bg: #08090b;
+      --bg-soft: #0d0f12;
+      --panel: #111419;
+      --panel-hover: #15191f;
+
+      --silver: #d7d9dc;
+      --silver-soft: #9da3aa;
+      --muted: #6f757d;
+
+      --border: rgba(255, 255, 255, 0.09);
+      --border-bright: rgba(255, 255, 255, 0.18);
+
+      --white: #f5f5f5;
+      --green: #9baea2;
+
+      --max-width: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(
+          circle at 75% 10%,
+          rgba(255, 255, 255, 0.045),
+          transparent 28%
+        ),
+        var(--bg);
+
+      color: var(--silver);
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: #d7d9dc;
+      color: #08090b;
+    }
+
+    /* =========================
+       GLOBAL
+    ========================= */
+
+    .container {
+      width: min(var(--max-width), calc(100% - 48px));
+      margin: auto;
+    }
+
+    .mono {
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        "Liberation Mono",
+        monospace;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .section {
+      padding: 110px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .section-description {
+      max-width: 650px;
+      color: var(--silver-soft);
+      font-size: 16px;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      height: 72px;
+
+      display: flex;
+      align-items: center;
+
+      background: rgba(8, 9, 11, 0.78);
+      backdrop-filter: blur(18px);
+
+      border-bottom: 1px solid var(--border);
+
+      z-index: 1000;
+    }
+
+    .nav-inner {
+      width: min(var(--max-width), calc(100% - 48px));
+      margin: auto;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      color: var(--white);
+    }
+
+    .logo span {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--silver-soft);
+      font-size: 13px;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: center;
+
+      padding-top: 72px;
+
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 600px;
+      height: 600px;
+
+      right: -200px;
+      top: 100px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.055),
+          transparent 68%
+        );
+
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      padding: 8px 12px;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      color: var(--silver-soft);
+      font-size: 12px;
+
+      margin-bottom: 28px;
+
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #c7d0ca;
+      box-shadow: 0 0 12px rgba(199, 208, 202, 0.45);
+    }
+
+    .hero h1 {
+      font-size: clamp(60px, 9vw, 120px);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+      font-weight: 500;
+
+      color: var(--white);
+
+      margin-bottom: 35px;
+    }
+
+    .hero h1 span {
+      color: var(--silver-soft);
+    }
+
+    .hero-description {
+      max-width: 650px;
+
+      color: var(--silver-soft);
+
+      font-size: 18px;
+      line-height: 1.8;
+
+      margin-bottom: 35px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      padding: 12px 19px;
+
+      border: 1px solid var(--border-bright);
+      border-radius: 6px;
+
+      font-size: 13px;
+
+      transition: 0.25s ease;
+    }
+
+    .button.primary {
+      background: var(--silver);
+      color: #090a0c;
+      border-color: var(--silver);
+    }
+
+    .button.primary:hover {
+      background: white;
+    }
+
+    .button.secondary:hover {
+      background: var(--panel);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* =========================
+       TERMINAL CARD
+    ========================= */
+
+    .terminal {
+      background: var(--panel);
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .terminal-header {
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+
+      padding: 0 15px;
+
+      border-bottom: 1px solid var(--border);
+
+      background: #0e1013;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .terminal-dots i {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: #44484e;
+    }
+
+    .terminal-title {
+      margin-left: 12px;
+
+      color: var(--muted);
+
+      font-size: 11px;
+      font-family: monospace;
+    }
+
+    .terminal-body {
+      padding: 28px 24px;
+
+      font-family:
+        "SFMono-Regular",
+        Consolas,
+        monospace;
+
+      font-size: 12px;
+
+      color: #aeb4bb;
+    }
+
+    .terminal-line {
+      margin-bottom: 14px;
+    }
+
+    .terminal-key {
+      color: #707780;
+    }
+
+    .terminal-value {
+      color: #e0e2e5;
+    }
+
+    .terminal-positive {
+      color: #aebdb3;
+    }
+
+    /* =========================
+       STATS
+    ========================= */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      border: 1px solid var(--border);
+      border-radius: 8px;
+
+      overflow: hidden;
+
+      margin-top: 60px;
+    }
+
+    .stat {
+      padding: 30px;
+
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat-number {
+      color: var(--white);
+
+      font-size: 30px;
+      font-weight: 500;
+
+      letter-spacing: -0.04em;
+
+      margin-bottom: 7px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns: 0.8fr 1.2fr;
+
+      gap: 100px;
+
+      margin-top: 60px;
+    }
+
+    .about-lead {
+      font-size: 25px;
+      line-height: 1.5;
+
+      color: var(--silver);
+    }
+
+    .about-text {
+      color: var(--silver-soft);
+
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .about-text p {
+      margin-bottom: 22px;
+    }
+
+    /* =========================
+       RESEARCH
+    ========================= */
+
+    .research-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 15px;
+
+      margin-top: 60px;
+    }
+
+    .research-card {
+      min-height: 270px;
+
+      padding: 30px;
+
+      background: var(--panel);
+
+      border: 1px solid var(--border);
+      border-radius: 8px;
+
+      transition: 0.3s ease;
+    }
+
+    .research-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-bright);
+      background: var(--panel-hover);
+    }
+
+    .research-number {
+      color: var(--muted);
+
+      font-family: monospace;
+
+      font-size: 11px;
+
+      margin-bottom: 45px;
+    }
+
+    .research-card h3 {
+      color: var(--white);
+
+      font-size: 20px;
+      font-weight: 500;
+
+      margin-bottom: 13px;
+    }
+
+    .research-card p {
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       FRAMEWORK
+    ========================= */
+
+    .framework {
+      margin-top: 60px;
+
+      border: 1px solid var(--border);
+      border-radius: 8px;
+
+      overflow: hidden;
+    }
+
+    .framework-row {
+      display: grid;
+
+      grid-template-columns: 80px 200px 1fr;
+
+      align-items: center;
+
+      padding: 24px 30px;
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .framework-row:last-child {
+      border-bottom: none;
+    }
+
+    .framework-index {
+      color: var(--muted);
+
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    .framework-name {
+      color: var(--white);
+
+      font-size: 15px;
+    }
+
+    .framework-description {
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       JOURNAL / PRINCIPLES
+    ========================= */
+
+    .principles {
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 15px;
+
+      margin-top: 60px;
+    }
+
+    .principle {
+      padding: 35px;
+
+      border: 1px solid var(--border);
+      border-radius: 8px;
+
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.025),
+        transparent
+      );
+    }
+
+    .principle span {
+      display: block;
+
+      color: var(--muted);
+
+      font-family: monospace;
+      font-size: 11px;
+
+      margin-bottom: 25px;
+    }
+
+    .principle h3 {
+      color: var(--white);
+
+      font-size: 19px;
+      font-weight: 500;
+
+      margin-bottom: 12px;
+    }
+
+    .principle p {
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+      padding: 130px 0;
+
+      text-align: center;
+    }
+
+    .contact h2 {
+      color: var(--white);
+
+      font-size: clamp(42px, 6vw, 80px);
+
+      letter-spacing: -0.06em;
+
+      font-weight: 500;
+
+      margin-bottom: 25px;
+    }
+
+    .contact p {
+      color: var(--muted);
+
+      max-width: 550px;
+
+      margin: 0 auto 35px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid var(--border);
+
+      padding: 28px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-text {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+
+      font-size: 11px;
+
+      transition: 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .hero {
+        padding-top: 130px;
+        padding-bottom: 80px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: none;
+      }
+
+      .stat:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border);
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .principles {
+        grid-template-columns: 1fr;
+      }
+
+      .framework-row {
+        grid-template-columns: 50px 1fr;
+        gap: 15px;
+      }
+
+      .framework-description {
+        grid-column: 2;
+      }
+    }
+
+    @media (max-width: 550px) {
+
+      .container,
+      .nav-inner {
+        width: min(100% - 30px, var(--max-width));
+      }
+
+      .hero h1 {
+        font-size: 64px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stat:last-child {
+        border-bottom: none;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <nav>
+    <div class="nav-inner">
+
+      <a href="#" class="logo">
+        AJ<span>.</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#framework">Framework</a></li>
+        <li><a href="#principles">Principles</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="container">
+
+        <div class="hero-grid">
+
+          <div>
+
+            <div class="hero-label">
+              <span class="status-dot"></span>
+              Independent Trader & Quantitative Finance Researcher
+            </div>
+
+            <h1>
+              AJAY<br>
+              <span>TRADING.</span>
+            </h1>
+
+            <p class="hero-description">
+              Engineering student researching quantitative finance,
+              market structure, systematic trading, and the mechanics
+              behind financial markets.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#research" class="button primary">
+                Explore Research
+              </a>
+
+              <a href="#framework" class="button secondary">
+                Trading Framework
+              </a>
+            </div>
+
+          </div>
+
+
+          <!-- TERMINAL -->
+
+          <div class="terminal">
+
+            <div class="terminal-header">
+
+              <div class="terminal-dots">
+                <i></i>
+                <i></i>
+                <i></i>
+              </div>
+
+              <div class="terminal-title">
+                ajay / research-terminal
+              </div>
+
+            </div>
+
+            <div class="terminal-body">
+
+              <div class="terminal-line">
+                <span class="terminal-key">identity</span>
+                :
+                <span class="terminal-value">
+                  independent_trader
+                </span>
+              </div>
+
+              <div class="terminal-line">
+                <span class="terminal-key">focus</span>
+                :
+                <span class="terminal-value">
+                  quantitative_finance
+                </span>
+              </div>
+
+              <div class="terminal-line">
+                <span class="terminal-key">education</span>
+                :
+                <span class="terminal-value">
+                  engineering / year_02
+                </span>
+              </div>
+
+              <div class="terminal-line">
+                <span class="terminal-key">approach</span>
+                :
+                <span class="terminal-value">
+                  research → test → execute
+                </span>
+              </div>
+
+              <div class="terminal-line">
+                <span class="terminal-key">markets</span>
+                :
+                <span class="terminal-value">
+                  FX / Gold / Futures
+                </span>
+              </div>
+
+              <div class="terminal-line">
+                <span class="terminal-key">status</span>
+                :
+                <span class="terminal-positive">
+                  continuously_learning
+                </span>
+              </div>
+
+              <br>
+
+              <div class="terminal-line">
+                <span class="terminal-key">
+                  $
+                </span>
+                <span class="terminal-value">
+                  ./build_edge
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats">
+
+          <div class="stat">
+            <div class="stat-number">02</div>
+            <div class="stat-label">Engineering Year</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">01</div>
+            <div class="stat-label">Independent Framework</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Research Iterations</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Market Curiosity</div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section class="section" id="about">
+
+      <div class="container">
+
+        <div class="eyebrow">01 — Profile</div>
+
+        <h2 class="section-title">
+          Built around curiosity,<br>
+          not predictions.
+        </h2>
+
+        <p class="section-description">
+          A personal research profile focused on understanding how
+          markets behave, why prices move, and whether those observations
+          can be converted into a repeatable trading process.
+        </p>
+
+
+        <div class="about-grid">
+
+          <div class="about-lead">
+
+            I am Ajay, a second-year engineering student
+            building my understanding of quantitative finance
+            alongside independent trading.
+
+          </div>
+
+
+          <div class="about-text">
+
+            <p>
+              My work sits at the intersection of financial markets,
+              quantitative analysis, market microstructure and
+              systematic decision-making.
+            </p>
+
+            <p>
+              I develop and trade using my own framework rather than
+              following a predefined signal service or copying another
+              trader's strategy.
+            </p>
+
+            <p>
+              The objective is not to predict every market move.
+              It is to identify situations where the expected payoff,
+              risk and market structure justify taking a position.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         RESEARCH
+    ========================== -->
+
+    <section class="section" id="research">
+
+      <div class="container">
+
+        <div class="eyebrow">02 — Research</div>
+
+        <h2 class="section-title">
+          Areas of investigation.
+        </h2>
+
+        <p class="section-description">
+          Current areas of study across quantitative finance and
+          discretionary market analysis.
+        </p>
+
+
+        <div class="research-grid">
+
+          <article class="research-card">
+
+            <div class="research-number">
+              RESEARCH / 001
+            </div>
+
+            <h3>
+              Market Microstructure
+            </h3>
+
+            <p>
+              Liquidity, order flow, price discovery, market participants,
+              execution and the mechanics underlying short-term price movement.
+            </p>
+
+          </article>
+
+
+          <article class="research-card">
+
+            <div class="research-number">
+              RESEARCH / 002
+            </div>
+
+            <h3>
+              Quantitative Finance
+            </h3>
+
+            <p>
+              Probability, statistics, expected value, risk modelling,
+              systematic strategies and quantitative methods for financial markets.
+            </p>
+
+          </article>
+
+
+          <article class="research-card">
+
+            <div class="research-number">
+              RESEARCH / 003
+            </div>
+
+            <h3>
+              Macro & Cross-Asset
+            </h3>
+
+            <p>
+              Rates, currencies, commodities, liquidity conditions and
+              macroeconomic variables that influence market regimes.
+            </p>
+
+          </article>
+
+
+          <article class="research-card">
+
+            <div class="research-number">
+              RESEARCH / 004
+            </div>
+
+            <h3>
+              Systematic Trading
+            </h3>
+
+            <p>
+              Converting observations into explicit rules that can be
+              tested, measured and improved instead of relying entirely
+              on intuition.
+            </p>
+
+          </article>
+
+
+          <article class="research-card">
+
+            <div class="research-number">
+              RESEARCH / 005
+            </div>
+
+            <h3>
+              Risk & Positioning
+            </h3>
+
+            <p>
+              Position sizing, leverage, drawdowns, asymmetric payoff
+              structures and capital preservation.
+            </p>
+
+          </article>
+
+
+          <article class="research-card">
+
+            <div class="research-number">
+              RESEARCH / 006
+            </div>
+
+            <h3>
+              Trading Psychology
+            </h3>
+
+            <p>
+              Decision-making under uncertainty, cognitive biases,
+              discipline and the behavioural effects of risk exposure.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FRAMEWORK
+    ========================== -->
+
+    <section class="section" id="framework">
+
+      <div class="container">
+
+        <div class="eyebrow">03 — Trading Framework</div>
+
+        <h2 class="section-title">
+          Observe. Model. Execute.
+        </h2>
+
+        <p class="section-description">
+          A structured process for turning market observations into
+          decisions while keeping the reasoning explicit.
+        </p>
+
+
+        <div class="framework">
+
+          <div class="framework-row">
+
+            <div class="framework-index">
+              01
+            </div>
+
+            <div class="framework-name">
+              Context
+            </div>
+
+            <div class="framework-description">
+              Identify the broader market regime and relevant
+              macroeconomic conditions.
+            </div>
+
+          </div>
+
+
+          <div class="framework-row">
+
+            <div class="framework-index">
+              02
+            </div>
+
+            <div class="framework-name">
+              Liquidity
+            </div>
+
+            <div class="framework-description">
+              Study where liquidity exists, where participants may
+              be positioned and how price interacts with those areas.
+            </div>
+
+          </div>
+
+
+          <div class="framework-row">
+
+            <div class="framework-index">
+              03
+            </div>
+
+            <div class="framework-name">
+              Structure
+            </div>
+
+            <div class="framework-description">
+              Analyse market structure and price behaviour to determine
+              whether the observed move has informational significance.
+            </div>
+
+          </div>
+
+
+          <div class="framework-row">
+
+            <div class="framework-index">
+              04
+            </div>
+
+            <div class="framework-name">
+              Setup
+            </div>
+
+            <div class="framework-description">
+              Define the specific condition required before considering
+              a trade.
+            </div>
+
+          </div>
+
+
+          <div class="framework-row">
+
+            <div class="framework-index">
+              05
+            </div>
+
+            <div class="framework-name">
+              Risk
+            </div>
+
+            <div class="framework-description">
+              Determine invalidation, position size, maximum acceptable
+              loss and expected payoff before execution.
+            </div>
+
+          </div>
+
+
+          <div class="framework-row">
+
+            <div class="framework-index">
+              06
+            </div>
+
+            <div class="framework-name">
+              Review
+            </div>
+
+            <div class="framework-description">
+              Record the trade, evaluate the hypothesis and separate
+              process quality from outcome.
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRINCIPLES
+    ========================== -->
+
+    <section class="section" id="principles">
+
+      <div class="container">
+
+        <div class="eyebrow">04 — Principles</div>
+
+        <h2 class="section-title">
+          Rules behind the process.
+        </h2>
+
+
+        <div class="principles">
+
+          <article class="principle">
+
+            <span>PRINCIPLE / 01</span>
+
+            <h3>
+              Hypothesis before conviction.
+            </h3>
+
+            <p>
+              A market view is a hypothesis to be tested,
+              not a belief that needs to be defended.
+            </p>
+
+          </article>
+
+
+          <article class="principle">
+
+            <span>PRINCIPLE / 02</span>
+
+            <h3>
+              Risk before reward.
+            </h3>
+
+            <p>
+              A trade is defined by its invalidation and risk
+              before its potential profit.
+            </p>
+
+          </article>
+
+
+          <article class="principle">
+
+            <span>PRINCIPLE / 03</span>
+
+            <h3>
+              Evidence over narrative.
+            </h3>
+
+            <p>
+              A compelling story about the market is not evidence
+              that the trade should exist.
+            </p>
+
+          </article>
+
+
+          <article class="principle">
+
+            <span>PRINCIPLE / 04</span>
+
+            <h3>
+              Process over individual outcomes.
+            </h3>
+
+            <p>
+              A profitable trade can be poorly executed, and a losing
+              trade can be correctly executed. The distinction matters.
+            </p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section class="contact">
+
+      <div class="container">
+
+        <div class="eyebrow">
+          Independent Research
+        </div>
+
+        <h2>
+          Study the market.<br>
+          Build the edge.
+        </h2>
+
+        <p>
+          This website documents my development as an independent
+          trader and quantitative finance researcher.
+        </p>
+
+        <div class="hero-actions" style="justify-content:center;">
+
+          <!-- Replace these with your real links -->
+
+          <a
+            href="https://github.com/"
+            target="_blank"
+            class="button secondary"
+          >
+            GitHub
+          </a>
+
+          <a
+            href="https://www.linkedin.com/"
+            target="_blank"
+            class="button secondary"
+          >
+            LinkedIn
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-inner">
+
+        <div class="footer-text">
+          © 2026 Ajay. Independent research & trading.
+        </div>
+
+        <div class="footer-links">
+
+          <a href="#about">
+            About
+          </a>
+
+          <a href="#research">
+            Research
+          </a>
+
+          <a href="#framework">
+            Framework
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       SMALL INTERACTION
+  ========================== -->
+
+  <script>
+
+    // Subtle navigation effect while scrolling
+
+    const nav = document.querySelector("nav");
+
+    window.addEventListener("scroll", () => {
+
+      if (window.scrollY > 30) {
+        nav.style.background = "rgba(8, 9, 11, 0.94)";
+      } else {
+        nav.style.background = "rgba(8, 9, 11, 0.78)";
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
